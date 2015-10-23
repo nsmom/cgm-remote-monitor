@@ -197,7 +197,11 @@ To learn more about the Nightscout API, visit https://YOUR-SITE.com/api-docs.htm
   * `ALARM_TIMEAGO_URGENT` (`on`) - possible values `on` or `off`
   * `ALARM_TIMEAGO_URGENT_MINS` (`30`) - minutes since the last reading to trigger a urgent alarm
   * `SHOW_PLUGINS` - enabled plugins that should have their visualizations shown, defaults to all enabled
-  * `LANGUAGE` (`en`) - language of Nighscout. If not available english is used
+  * `LANGUAGE` (`en`) - language of Nightscout. If not available english is used
+  * `SCALE_Y` (`log`) - The type of scaling used for the Y axis of the charts system wide.
+    * The default `log` (logarithmic) option will let you see more detail towards the lower range, while still showing the full CGM range.
+    * The `linear` option has equidistant tick marks, the range used is dynamic so that space at the top of chart isn't wasted.
+    * The `log-dynamic` is similar to the default `log` options, but uses the same dynamic range and the `linear` scale. 
 
 ### Plugins
 
@@ -256,9 +260,12 @@ To learn more about the Nightscout API, visit https://YOUR-SITE.com/api-docs.htm
     * `MMCONNECT_INTERVAL` (`60000` *1 minute*) - Number of milliseconds to wait between requests to the CareLink server.
     * `MMCONNECT_MAX_RETRY_DURATION` (`32`) - Maximum number of total seconds to spend retrying failed requests before giving up.
     * `MMCONNECT_SGV_LIMIT` (`24`) - Maximum number of recent sensor glucose values to send to Nightscout on each request.
-    * `MMCONNECT_VERBOSE` - Set this to any truthy value to log CareLink request information to the console.
-    * `MMCONNECT_STORE_RAW_DATA` - Set this to any truthy value to store raw data returned from CareLink as `type: "carelink_raw"` database entries (useful for development).
-  
+    * `MMCONNECT_VERBOSE` - Set this to "true" to log CareLink request information to the console.
+    * `MMCONNECT_STORE_RAW_DATA` - Set this to "true" to store raw data returned from CareLink as `type: "carelink_raw"` database entries (useful for development).
+  * `pumpiob` (Pump Insulin-on-Board) - Display the pump-reported active bolus insulin. This is useful if you have a MiniMed Connect uploading pump status data.
+    * `PUMPIOB_RECENCY` (`10`) - Don't show pump IOB data from more than this many minutes ago
+    * `PUMPIOB_PEBBLE_BATTERY_INDICATOR` (`25`) - Show a `*` indicator next to IOB on the Pebble [like this](http://imgur.com/0oQltnm) when the battery of the uploader (MiniMed Connect) is lower than this value. Set to 0 to disable.
+
  Also see [Pushover](#pushover) and [IFTTT Maker](#ifttt-maker).
  
 
